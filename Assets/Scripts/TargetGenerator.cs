@@ -4,54 +4,35 @@ using UnityEngine;
 
 public class TargetGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject _target;
+    public static int FirstTargetIndex;
+    public List<Target> Targets = new List<Target>();
+
+    [SerializeField] private Target _target;
     [SerializeField] private Transform _targetsParent;
     [SerializeField] private int _numOfTargets = 10;
     [SerializeField] private float _sphereRadius = 5.0f;
 
-    private Transform _firstTargetTransform;
-
-
     private void Start()
     {
-        //InitTargets(transform.position);
-
-        float scaling = 5f;
+        float scaling = 3f;
         Vector3[] pts = PointsOnSphere(12, scaling);
-        List<GameObject> targets = new List<GameObject>();
+        
         int i = 0;
 
         foreach (Vector3 value in pts)
         {
-            GameObject target = Instantiate(_target, transform.position, Quaternion.identity, _targetsParent);
+            Target target = Instantiate(_target, transform.position, Quaternion.identity, _targetsParent) as Target;
 
-            targets.Add(target);
-            targets[i].transform.parent = _targetsParent;
-            targets[i].transform.position = transform.position + value * scaling;
-            targets[i].transform.LookAt(transform.position);
-            targets[i].transform.rotation = target.transform.rotation * Quaternion.Euler(90, 0, 0);
+            Targets.Add(target);
+            Targets[i].transform.parent = _targetsParent;
+            Targets[i].transform.position = transform.position + value * scaling;
+            Targets[i].transform.LookAt(transform.position);
+            Targets[i].transform.rotation = target.transform.rotation * Quaternion.Euler(90, 0, 0);
             i++;
         }
-    }
 
-    private void InitTargets(Vector3 center)
-    {
-        for (int i = 0; i < _numOfTargets - 1; i++)
-        {
-            Vector3 pos = RandomSpherePoint(center, _sphereRadius);
-            GameObject target = Instantiate(_target, pos, Quaternion.identity, _targetsParent);
-            target.transform.LookAt(center);
-            target.transform.rotation = target.transform.rotation * Quaternion.Euler(90, 0, 0);
-        }
-    }
-
-    private Vector3 RandomSpherePoint(Vector3 center, float radius)
-    {
-        var pos = Random.onUnitSphere;
-        pos.y = Mathf.Abs(pos.y);
-
-        pos = center + radius * pos;
-        return pos;
+        FirstTargetIndex = Random.Range(0, Targets.Count - 1);
+        Targets[FirstTargetIndex].light.SetActive(true);
     }
 
     private Vector3[] PointsOnSphere(int n, float scaling)
@@ -80,7 +61,9 @@ public class TargetGenerator : MonoBehaviour
 
             upts.Add(correction);
         }
+
         Vector3[] pts = upts.ToArray();
+
         return pts;
     }
 }

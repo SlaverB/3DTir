@@ -9,11 +9,9 @@ public class DecalShooter : MonoBehaviour {
 	float time = 0;
 	public float radius = 1.0F;
 	public float power = 2.0F;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+
+	[SerializeField] private GameController _gameController;
+
 	// Update is called once per frame
 	void Update () {
 		Muzzleflash.SetActive(false);
@@ -50,6 +48,7 @@ public class DecalShooter : MonoBehaviour {
 
 				if (rb != null){
 					rb.AddForceAtPosition(fwd*power,hitInfo.point,ForceMode.Impulse);
+					_gameController.ShootInTarget?.Invoke();
 					Debug.Log("rb!");
 				}
 

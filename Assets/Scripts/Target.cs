@@ -19,7 +19,7 @@ public class Target : MonoBehaviour {
         
     }
 
-    public void shoot () {
+    public void Shoot () {
         if (!enabled)
             return;
 
@@ -28,6 +28,8 @@ public class Target : MonoBehaviour {
         src.Play();
 
         enabled = false;
+        //gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
 }

@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DecalShooter : MonoBehaviour {
+public class DecalShooter : MonoBehaviour 
+{
 	public GameObject DecalPrefab;
 	public AudioSource ShootSource;
 	public Animator anim;
 	public GameObject Muzzleflash;
-	float time = 0;
+	private float time = 0;
 	public float radius = 1.0F;
 	public float power = 2.0F;
-
-	[SerializeField] private GameController _gameController;
 
 	// Update is called once per frame
 	void Update () {
@@ -40,24 +39,24 @@ public class DecalShooter : MonoBehaviour {
 
 				Vector3 explosionPos = hitInfo.point;
 
-				Rigidbody rb = hitInfo.collider.GetComponent<Rigidbody>();
+				
+				//Rigidbody rb = hitInfo.collider.GetComponent<Rigidbody>();
 
 
                 Target trg = hitInfo.collider.GetComponent<Target>();
-                if (trg) trg.shoot();
+
+                Rigidbody rb = trg.gameObject.GetComponent<Rigidbody>();
+
+				if (trg) trg.Shoot();
 
 				if (rb != null){
 					rb.AddForceAtPosition(fwd*power,hitInfo.point,ForceMode.Impulse);
-					_gameController.ShootInTarget?.Invoke();
-					Debug.Log("rb!");
+					//Destroy(rb.gameObject);
+                    Debug.Log("Target shooted");
 				}
 
-
-
-			}
-			//Сама стрельба
-
-
-		}
+                trg.gameObject.SetActive(false);
+            }
+        }
 	}
 }

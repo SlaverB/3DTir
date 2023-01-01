@@ -71,6 +71,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -79,9 +81,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 1
     aniso: 1
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -102,9 +104,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -468,6 +473,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      decals_package_b_7: -130375962077377233
+      decals_package_b_0: 6198797194279463755
+      decals_package_b_15: 8466602573498394808
+      decals_package_b_8: -5471833119798461466
+      decals_package_b_10: 353144906854438961
+      decals_package_b_3: -2700613340557937714
+      decals_package_b_14: -2500610386002329385
+      decals_package_b_4: -1461661030578785170
+      decals_package_b_5: 7335211647213170856
+      decals_package_b_1: 5873388091810300493
+      decals_package_b_2: 6344408010133132363
+      decals_package_b_9: 7551180554557625565
+      decals_package_b_13: -5005580432099381856
+      decals_package_b_12: -2049448443009072118
+      decals_package_b_11: -2130037681591062870
+      decals_package_b_6: -449877498534534923
   spritePackingTag: 
   pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1

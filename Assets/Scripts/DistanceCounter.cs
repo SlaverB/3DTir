@@ -14,10 +14,10 @@ public class DistanceCounter : MonoBehaviour
 
 		RaycastHit hitInfo;
 
-		if (Physics.Raycast (transform.position, transform.TransformDirection (Vector3.forward), out hitInfo, 200))
+		if (Physics.Raycast (transform.position, transform.TransformDirection (new Vector3(0, 0 ,1)), out hitInfo, 200))
 		{
 			_distance = hitInfo.distance;
-			DistanceText.text = _distance.ToString ();
+			DistanceText.text = _distance.ToString();
 
 			if (Input.GetKeyDown (KeyCode.Mouse1)) 
 			{
